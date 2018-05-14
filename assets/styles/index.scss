@@ -2,8 +2,65 @@
 // but allowing components to change
 // http://www.paulirish.com/2012/box-sizing-border-box-ftw/
 html {
-    box-sizing: border-box;
+    box-sizing: border-box; // background-color: yellow;
+    background-color: gainsboro;
 }
-*, *:before, *:after {
+
+*,
+*:before,
+*:after {
     box-sizing: inherit;
+}
+
+.container div {
+    padding: 10px;
+    border: 1px solid gray;
+    font-weight: bold;
+    background-color: aliceblue;
+}
+
+.container {
+    display: grid;
+    // grid-template: auto 300px 100px / 1fr 2fr 1fr 1fr;
+    // grid-template-rows: auto 300px 100px;
+    grid-template-columns: [main-start aside-start] 200px [aside-end content-start] auto [content-end main-end];
+    grid-auto-rows: 100px;
+    grid-gap: 5px;
+    // grid-auto-flow: dense;
+    justify-content: center;
+    // justify-items: center; // default for justify-self for all items
+}
+
+.header {
+    grid-column: main;
+}
+
+.content {
+    &-2 {
+        grid-column: aside;
+        grid-row: span 3;
+        // grid-row: aside;
+    }
+    &-3 {
+        grid-column: content;
+    }
+    &-4, &-5 {
+        grid-column: content;
+        // grid-area: content;
+        align-self: center;
+        justify-self: center;
+    }
+    &-6 {
+        grid-column: content;
+        // grid-row: span 2;
+        // grid-column: span 2; 
+    }
+    &-7 {
+        // grid-column: aside;
+        grid-row: 5;
+    }
+}
+
+.footer {
+    grid-column: main;
 }
